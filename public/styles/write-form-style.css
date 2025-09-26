@@ -1,0 +1,144 @@
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --accent: #2563eb; /* primary */
+  --accent-2: #06b6d4;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(15,23,42,0.06);
+  --glass: rgba(255,255,255,0.6);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #eef2f7 60%);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+  padding:32px;
+}
+
+/* page layout */
+.page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:calc(100vh - 64px);
+}
+
+/* card */
+.card{
+  width:100%;
+  max-width:880px;
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+  border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* header */
+.page-title{
+  margin:0 0 18px 0;
+  font-size:1.35rem;
+  letter-spacing:-0.2px;
+  color:var(--text);
+}
+
+/* form */
+.form{
+  display:grid;
+  gap:14px;
+}
+
+/* 라벨/입력 정렬 */
+.form-row{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.form-row label{
+  font-size:0.85rem;
+  color:var(--muted);
+  font-weight:600;
+  letter-spacing:0.2px;
+}
+
+/* inputs */
+input[type="text"],
+input[type="password"],
+textarea{
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,251,0.95));
+  font-size:1rem;
+  color:var(--text);
+  outline:none;
+  transition:box-shadow .18s ease, border-color .14s ease, transform .12s ease;
+  resize:vertical;
+  min-height:44px;
+}
+
+/* textarea 조금 더 넉넉하게 */
+textarea{ min-height:140px; padding-top:12px; }
+
+/* 포커스 스타일 */
+input:focus, textarea:focus{
+  border-color: rgba(37,99,235,0.9);
+  box-shadow: 0 6px 20px rgba(37,99,235,0.08);
+  transform:translateY(-1px);
+}
+
+/* 버튼 그룹 */
+.form-actions{
+  display:flex;
+  gap:12px;
+  justify-content:flex-end;
+  margin-top:6px;
+}
+
+/* 버튼 공통 */
+.btn{
+  padding:10px 16px;
+  border-radius:10px;
+  border: none;
+  font-weight:600;
+  cursor:pointer;
+  font-size:0.95rem;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+}
+
+/* primary */
+.btn-primary{
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color:white;
+  box-shadow: 0 6px 18px rgba(37,99,235,0.14);
+}
+
+.btn-primary:hover{ transform: translateY(-3px); }
+
+/* ghost */
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  border:1px solid rgba(15,23,42,0.06);
+}
+
+.btn-ghost:hover{ background: rgba(15,23,42,0.03); }
+
+/* 반응형: 작은 화면에서 카드 여백 줄이기 */
+@media (max-width:640px){
+  body{ padding:18px; }
+  .card{ padding:18px; border-radius:10px; }
+  .page-title{ font-size:1.15rem; }
+  .form-actions{ flex-direction:column-reverse; align-items:stretch; }
+  .btn{ width:100%; }
+}

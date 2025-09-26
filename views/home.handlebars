@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+
+  <!-- 홈 전용 스타일 -->
+  <link rel="stylesheet" href="/styles/home-style.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>{{title}}</h1>
+    <p>{{message}}</p>
+
+    <input type="text" name="search" id="search" value="50" placeholder="검색어를 입력하세요." />
+    <button>검색</button>
+    <br />
+
+    <a href="/write"> 글쓰기</a>
+    <br />
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th width="50%">제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>등록일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="/detail/">타이틀</a></td>
+            <td align="center">작성자이름</td>
+            <td align="center">999999</td>
+            <td align="center">2025.09.24</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <a>&lt;&lt;</a>
+      <a>&lt;</a>
+      <a class="active">1</a>
+      <a>2</a>
+      <a>3</a>
+      <a>4</a>
+      <a>&gt;</a>
+      <a>&gt;&gt;</a>
+    </div>
+  </main>
+</body>
+</html>

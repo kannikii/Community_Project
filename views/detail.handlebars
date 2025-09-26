@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+
+  <!-- 상세 화면 전용 스타일 -->
+  <link rel="stylesheet" href="/styles/detail-style.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>{{title}}</h1>
+    <p>{{message}}</p>
+
+    <h2 class="text-xl">TITLE</h2>
+    <div class="meta">
+      작성자 : <b>작성자 이름</b>
+    </div>
+    <div class="meta">
+      조회수 : 9999 | 작성일시 : 2025-09-30 00:00:00
+      <button onclick="modifyPost()">수정</button>
+      <button onclick="deletePost()">삭제</button>
+    </div>
+
+    <div>
+      <pre>본문입니다. ㅇㅇ</pre>
+    </div>
+
+    <section>
+      <div>
+        <h3>3개의 댓글이 있습니다.</h3>
+      </div>
+
+      <form action="/write-comment" method="post">
+        <div>
+          <input type="text" name="name" placeholder="이름" />
+          <input type="password" name="password" placeholder="비밀번호"/>
+          <textarea name="comment" id="comment" cols="40" rows="3" placeholder="댓글을 입력해주세요."></textarea>
+          <button>댓글 쓰기</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="comment">
+      <div class="meta">
+        <span>작성자 : <b>댓글 작성자</b></span>
+        <span>작성일시 : 2025-09-30 00:00:00 
+          <button onclick="deleteComment('1')">삭제</button>
+        </span>
+      </div>
+      <pre>{{comment}}</pre>
+    </section>
+
+    <footer>
+      <a href="/">목록</a>
+    </footer>
+  </main>
+</body>
+</html>

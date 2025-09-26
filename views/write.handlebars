@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[{{title}}] 글 작성</title>
+
+  <link rel="stylesheet" href="/styles/write-form-style.css" />
+</head>
+<body>
+  <main class="page">
+    <section class="card">
+      <h1 class="page-title">[{{title}}] 글 작성</h1>
+
+      <form action="/write" name="boardForm" method="post" class="form">
+        <div class="form-row">
+          <label for="title">TITLE</label>
+          <input id="title" type="text" name="title" placeholder="제목을 넣어주세요" value=""/>
+        </div>
+
+        <div class="form-row">
+          <label for="writer">NAME</label>
+          <input id="writer" type="text" name="writer" placeholder="이름을 넣어주세요" value="" />
+        </div>
+
+        <div class="form-row">
+          <label for="password">PASSWORD</label>
+          <input id="password" type="password" name="password" placeholder="비밀번호를 넣어주세요." value=""/>
+        </div>
+
+        <div class="form-row">
+          <label for="content">CONTENT</label>
+          <textarea id="content" name="content" placeholder="본문을 입력하세요" cols="50" rows="10"></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">SAVE</button>
+          <button type="button" class="btn btn-ghost" onclick="location.href='/'">CANCEL</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
