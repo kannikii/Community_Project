@@ -14,7 +14,7 @@
     <p>{{message}}</p>
 
     <input type="text" name="search" id="search" value="50" placeholder="검색어를 입력하세요." />
-    <button>검색</button>
+    <button onclick="location.href=`/?search=${document.getElementById('search').value}`">검색</button>
     <br />
 
     <a href="/write"> 글쓰기</a>
