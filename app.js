@@ -40,6 +40,7 @@ app.get("/",async(req,res)=>{
     }catch(error) {
         console.error(error);
         res.render("home",{title: "테스트 게시판" });
+        
     }
 });
 
