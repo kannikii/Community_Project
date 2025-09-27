@@ -22,8 +22,10 @@ app.get("/write",(req,res)=>{
     res.render("write",{ title: "테스트 게시판" }); 
 });
 app.get("/detail/:id",async (req,res)=>{
+    const result=await postService.getDetailPost(collection,req.params.id);
     res.render("detail",{
         title: "테스트 게시판",
+        post: result.value,
     });
 });
 //리스트 페이지

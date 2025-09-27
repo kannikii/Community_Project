@@ -11,20 +11,19 @@
 <body>
   <main class="page">
     <h1>{{title}}</h1>
-    <p>{{message}}</p>
-
-    <h2 class="text-xl">TITLE</h2>
+    {{#with post}}
+    <h2 class="text-xl">{{title}}</h2>
     <div class="meta">
-      작성자 : <b>작성자 이름</b>
+      작성자 : <b>{{writer}}</b>
     </div>
     <div class="meta">
-      조회수 : 9999 | 작성일시 : 2025-09-30 00:00:00
+      조회수 : {{hits}} | 작성일시 : {{dateString createdDt}}
       <button onclick="modifyPost()">수정</button>
       <button onclick="deletePost()">삭제</button>
     </div>
 
     <div>
-      <pre>본문입니다. ㅇㅇ</pre>
+      <pre>{{content}}</pre>
     </div>
 
     <section>
@@ -41,7 +40,6 @@
         </div>
       </form>
     </section>
-
     <section class="comment">
       <div class="meta">
         <span>작성자 : <b>댓글 작성자</b></span>
@@ -51,10 +49,14 @@
       </div>
       <pre>{{comment}}</pre>
     </section>
-
+    {{/with}}
     <footer>
       <a href="/">목록</a>
     </footer>
+    <script>
+      async function modifyPost() {}
+      async function deletePost() {}
+    </script>
   </main>
 </body>
 </html>
