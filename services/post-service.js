@@ -35,8 +35,31 @@ async function getDetailPost(collection,id) {
         //ip나 device 검사해서 어뷰징 막는 기능 추가 가능
 }
 
+async function getPostByIdAndPassword(collection,{id,password}) {
+    return await collection.findOne(
+        {_id: ObjectId(id),
+        password:password},
+        projectionOption);
+}
+
+async function getPostById(collection,id) {
+    return await collection.findOne({_id:ObjectId(id)},projectionOption);
+}
+
+async function updatePost(collection,id,post) {
+    const toUpdatePost = {
+        $set: {
+            ...post,
+        },
+    };
+    return await collection.updateOne({_id:ObjectId(id)},toUpdatePost);
+}
+
 module.exports ={
     list,
     writePost,
     getDetailPost,
+    getPostById,
+    getPostByIdAndPassword,
+    updatePost,
 };
