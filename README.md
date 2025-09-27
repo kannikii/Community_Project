@@ -1,28 +1,33 @@
-The following README provides comprehensive documentation for the `post-service` microservice, covering its purpose, API endpoints, setup, and usage. It aims to give developers all the information they need to integrate with the service effectively. The structure is designed for clarity and ease of navigation, with specific examples and guidelines to aid understanding and contribution.
+# Community Project
 
+> A community-driven project built with Node.js, Express, Handlebars, and supporting modules.
 
+[![Node.js version](https://img.shields.io/badge/node-%3E%3D14-brightgreen)](https://nodejs.org/)  
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 
-Conclusion:
+---
 
-- The README provides a comprehensive overview of the `post-service`, including its purpose, dependencies, installation, API endpoints, authentication, error handling, usage examples, deployment, contributing guidelines, and license.
-- Further enhancements could include:
-    - Adding a flowchart or diagram illustrating the service's architecture and data flow.
-    - Including specific instructions for setting up different databases (e.g., MongoDB, PostgreSQL).
-    - Adding more detailed information about authentication and authorization, including code examples for generating and verifying JWTs.
-    - Providing more advanced usage examples, such as how to handle pagination or filtering of posts.
-    - Integrating with a CI/CD pipeline for automated testing and deployment.
-- Complementary configuration examples:
-    - Example `package.json` dependencies:
-    ```json
-    {
-      "dependencies": {
-        "express": "^4.17.1",
-        "body-parser": "^1.19.0",
-        "mongoose": "^6.0.0",
-        "jsonwebtoken": "^8.5.1"
-      },
-      "devDependencies": {
-        "nodemon": "^2.0.0"
-      }
-    }
-    ```
+## Table of Contents
+
+- [About](#about)  
+- [Directory Structure](#directory-structure)  
+- [Features](#features)  
+- [Getting Started](#getting-started)  
+  - [Prerequisites](#prerequisites)  
+  - [Installation](#installation)  
+  - [Usage](#usage)  
+- [Configuration](#configuration)  
+- [Folder Details](#folder-details)  
+- [Contributing](#contributing)  
+- [License](#license)  
+
+---
+
+## About
+
+`Community Project`는 커뮤니티 중심의 웹 애플리케이션 프로젝트로, Node.js 기반 서버, 템플릿 렌더링, 여러 유틸리티 모듈 등이 통합된 구조를 가집니다.
+
+---
+
+## Directory Structure
+
