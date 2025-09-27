@@ -83,47 +83,54 @@ Community_Project/
 
 ---
 
-### Usage
+🚀 실행 방법 (Usage)
+개발 서버를 실행하는 방법입니다.
 
-개발 서버 실행:
+Bash
 
+npm start
+# 또는
+node app.js
+서버가 실행되면 브라우저에서 http://localhost:3000 등 설정된 기본 포트로 접속할 수 있습니다.
 
+포트, 데이터베이스 연결 정보, API 키 등 주요 설정은 configs/ 폴더 내의 환경별 설정 파일(config.development.js, config.production.js 등)에서 관리할 수 있습니다.
 
+📁 폴더 구조 (Folder Structure)
+프로젝트의 주요 폴더 및 파일 구조는 다음과 같습니다.
 
-브라우저에서 http://localhost:3000 등 기본 포트로 접속할 수 있도록 설정되어 있을 겁니다.
-Configuration
+configs/: 환경별 설정 파일 (DB, 포트, API 키 등)
 
-configs 폴더에 환경별 설정 파일 (예: config.development.js, config.production.js) 이 존재할 것으로 예상됩니다.
-이 파일들을 통해 포트, DB 연결 정보, API 키 등을 설정할 수 있습니다.
+public/styles/: CSS 등 정적 스타일 파일
 
-Folder Details
+services/: 핵심 비즈니스 로직 모듈
 
-configs/ — 환경 설정 파일
+utils/: 공통으로 사용되는 유틸리티 함수
 
-public/styles/ — CSS 등 정적 스타일 파일
+views/: 템플릿 파일 (Handlebars 등)
 
-services/ — 비즈니스 로직 모듈
+app.js: 애플리케이션의 메인 진입점 파일
 
-utils/ — 공통 유틸리티 함수
+✨ 기여 방법 (Contributing)
+이 프로젝트에 기여하고 싶으시다면 다음 절차를 따라주세요.
 
-views/ — 템플릿 파일 (Handlebars 등)
+저장소 Fork 하기
 
-app.js — 애플리케이션 진입점
+새 브랜치 생성하기
 
-Contributing
+Bash
 
-Fork the repository
+git checkout -b feature/YourFeature
+변경사항 커밋하기
 
-새 브랜치 생성 (git checkout -b feature/YourFeature)
+Bash
 
-변경사항 커밋 (git commit -m 'Add some feature')
+git commit -m 'Add some feature'
+브랜치에 푸시하기
 
-푸시 (git push origin feature/YourFeature)
+Bash
 
-Pull Request 생성
+git push origin feature/YourFeature
+Pull Request 생성하기
 
-License
-
-이 프로젝트는 MIT License
- 하에 배포됩니다.
-
+📄 라이선스 (License)
+이 프로젝트는 MIT License 하에 배포됩니다.
