@@ -87,14 +87,10 @@ Community_Project/
 
 개발 서버 실행:
 
-```bash
-npm start
-# 또는
-node app.js
+
 
 
 브라우저에서 http://localhost:3000 등 기본 포트로 접속할 수 있도록 설정되어 있을 겁니다.
-
 Configuration
 
 configs 폴더에 환경별 설정 파일 (예: config.development.js, config.production.js) 이 존재할 것으로 예상됩니다.
@@ -130,15 +126,4 @@ License
 
 이 프로젝트는 MIT License
  하에 배포됩니다.
-
-
----
-
-필요하시면 이 템플릿을 기반으로 **기능 별 API 명세**, **예시 코드 스니펫**, **화면 스크린샷 삽입** 등까지 포함한 더 풍성한 README를 같이 작성해드릴게요. 그렇게 할까요?
-::contentReference[oaicite:1]{index=1}
-
-
----
-
-## Directory Structure
 
