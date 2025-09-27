@@ -4,6 +4,8 @@ const app = express();
 const mongodbConnection = require("./configs/mongodb-connection");
 const path = require("path");
 const postService = require("./services/post-service");
+const { ObjectId } = require("mongodb");
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -18,7 +20,6 @@ app.engine(
 app.set("view engine","handlebars");
 app.set("views",__dirname + "/views");
 
-
 //상세 페이지
 app.get("/detail/:id",async (req,res)=>{
     const result=await postService.getDetailPost(collection,req.params.id);
@@ -27,6 +28,7 @@ app.get("/detail/:id",async (req,res)=>{
         post: result.value,
     });
 });
+
 //패스워드 체크
 app.post("/check-password",async(req,res)=>{
     const {id,password}=req.body;
@@ -39,6 +41,7 @@ app.post("/check-password",async(req,res)=>{
         return res.json({isExist:true});
     }
 });
+
 //리스트 페이지
 app.get("/",async(req,res)=>{
     const page = parseInt(req.query.page) || 1;
@@ -53,6 +56,7 @@ app.get("/",async(req,res)=>{
 
     }
 });
+
 //글 쓰기
 app.get("/write",(req,res)=>{
     res.render("write",{ title: "자유게시판" ,mode:"create"}); 
@@ -81,6 +85,22 @@ app.post("/modify/",async(req,res)=>{
     };
     const result = postService.updatePost(collection,id,post);
     res.redirect(`/detail/${id}`);
+});
+
+//글 삭제
+app.delete("/delete",async(req,res) =>{
+    const {id,password} = req.body;
+    try{
+        const result = await collection.deleteOne({_id:ObjectId(id),password:password});
+        if(result.deletedCount!==1) {
+            console.log("삭제 실패");
+            return res.json({isSuccess:false});
+        }
+        return res.json({isSuccess:true});
+    }catch(error) {
+        console.error(error);
+        return res.json({isSuccess:false});
+    }
 });
 
 let collection;
