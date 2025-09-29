@@ -31,7 +31,7 @@ app.use(async (req, res, next) => {
 });
 //상세 페이지
 app.get("/detail/:id",async (req,res)=>{
-    const result=await postService.getDetailPost(collection,req.params.id);
+    const result=await postService.getDetailPost(req.collection,req.params.id);
     res.render("detail",{
         title: "테스트 게시판",
         post: result.value,
@@ -42,7 +42,7 @@ app.get("/detail/:id",async (req,res)=>{
 app.post("/check-password",async(req,res)=>{
     const {id,password}=req.body;
 
-    const post = await postService.getPostByIdAndPassword(collection,{id,password});
+    const post = await postService.getPostByIdAndPassword(req.collection,{id,password});
     if(!post){
         return res.status(404).json({isExist:false});
 
@@ -56,7 +56,7 @@ app.get("/",async(req,res)=>{
     const page = parseInt(req.query.page) || 1;
     const search = req.query.search || "";
     try{
-        const [posts,paginator] = await postService.list(collection,page,search);
+        const [posts,paginator] = await postService.list(req.collection,page,search);
         res.render("home",{title: "자유게시판",search,paginator,posts});
 
     }catch(error) {
@@ -83,7 +83,7 @@ app.post("/write",async(req,res)=> {
 
 //글 수정
 app.get("/modify/:id", async(req,res)=>{
-    const post = await postService.getPostById(collection,req.params.id);
+    const post = await postService.getPostById(req.collection,req.params.id);
     console.log(post);
     res.render("write",{ title: "자유게시판",mode: "modify", post});
 });
@@ -97,7 +97,7 @@ app.post("/modify/",async(req,res)=>{
         content,
         createdDt: new Date().toISOString(),
     };
-    const result = postService.updatePost(collection,id,post);
+    const result = postService.updatePost(req.collection,id,post);
     res.redirect(`/detail/${id}`);
 });
 
@@ -120,7 +120,7 @@ app.delete("/delete",async(req,res) =>{
 //댓글 추가
 app.post("/write-comment",async(req,res)=>{
     const { id,name,password,comment }=req.body;
-    const post = await postService.getPostById(collection,id);
+    const post = await postService.getPostById(req.collection,id);
 
     if(post.comments){
         post.comments.push({
@@ -142,7 +142,7 @@ app.post("/write-comment",async(req,res)=>{
         ];
     }
 
-    postService.updatePost(collection,id,post);
+    postService.updatePost(req.collection,id,post);
     return res.redirect(`/detail/${id}`);
 });
 
@@ -150,7 +150,7 @@ app.post("/write-comment",async(req,res)=>{
 app.delete("/delete-comment",async(req,res)=>{
     const { id,idx,password}=req.body;
 
-    const post = await collection.findOne(
+    const post = await req.collection.findOne(
         {
             _id:ObjectId(id),
             comments: {$elemMatch: {idx: parseInt(idx),password}},
@@ -161,7 +161,7 @@ app.delete("/delete-comment",async(req,res)=>{
         return res.json({isSuccess:false});
     }
     post.comments = post.comments.filter((comment)=>comment.idx!=idx);
-    postService.updatePost(collection,id,post);
+    postService.updatePost(req.collection,id,post);
     return res.json({isSuccess:true});
 });
 

@@ -10,9 +10,11 @@ async function writePost(collection,post) {
 async function list(collection,page,search) {
     const perPage = 10;
     const query = { title: new RegExp(search,"i")};
-    const cursor = collection.find(query,{ limit:perPage,skip: (page-1)*perPage}).sort({
-        createdDt:-1,
-    });
+    const cursor = collection
+        .find(query)
+        .skip((page - 1) * perPage)
+        .limit(perPage)
+        .sort({ createdDt: -1 });
     const totalCount = await collection.countDocuments(query);
     const posts = await cursor.toArray();
 
