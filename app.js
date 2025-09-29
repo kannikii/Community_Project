@@ -35,7 +35,7 @@ app.use(async (req, res, next) => {
 app.get("/detail/:id",async (req,res)=>{
     const result=await postService.getDetailPost(req.collection,req.params.id);
     res.render("detail",{
-        title: "테스트 게시판",
+        title: "자유 게시판",
         post: result.value,
     });
 });
