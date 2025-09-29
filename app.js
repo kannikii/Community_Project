@@ -107,7 +107,7 @@ app.post("/modify/",async(req,res)=>{
 app.delete("/delete",async(req,res) =>{
     const {id,password} = req.body;
     try{
-        const result = await collection.deleteOne({_id:ObjectId(id),password:password});
+        const result = await req.collection.deleteOne({_id:ObjectId(id),password:password});
         if(result.deletedCount!==1) {
             console.log("삭제 실패");
             return res.json({isSuccess:false});
