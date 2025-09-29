@@ -19,13 +19,15 @@ app.engine(
 
 app.set("view engine","handlebars");
 app.set("views",__dirname + "/views");
-// middleware로 collection 주입
+//미들웨어
 app.use(async (req, res, next) => {
   try {
-    const db = await connectDB();
+    const db = await mongodbConnection(); // require로 받은 변수명 사용
     req.collection = db.collection("post");
     next();
   } catch (err) {
+    // Vercel 로그에서 에러를 쉽게 확인하기 위해 console.error 추가
+    console.error("Database connection error in middleware:", err);
     next(err);
   }
 });
