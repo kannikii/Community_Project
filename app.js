@@ -19,7 +19,16 @@ app.engine(
 
 app.set("view engine","handlebars");
 app.set("views",__dirname + "/views");
-
+// middleware로 collection 주입
+app.use(async (req, res, next) => {
+  try {
+    const db = await connectDB();
+    req.collection = db.collection("post");
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 //상세 페이지
 app.get("/detail/:id",async (req,res)=>{
     const result=await postService.getDetailPost(collection,req.params.id);
@@ -62,9 +71,14 @@ app.get("/write",(req,res)=>{
     res.render("write",{ title: "자유게시판" ,mode:"create"}); 
 });
 app.post("/write",async(req,res)=> {
-    const post = req.body;
-    const result = await postService.writePost(collection,post);
-    res.redirect(`/detail/${result.insertedId}`);
+    try {
+        const post = req.body;
+        const result = await postService.writePost(req.collection, post);
+        res.redirect(`/detail/${result.insertedId}`);
+  } catch (err) {
+        console.error(err);
+        res.status(500).send("DB insert error");
+  }
 });
 
 //글 수정
@@ -151,10 +165,12 @@ app.delete("/delete-comment",async(req,res)=>{
     return res.json({isSuccess:true});
 });
 
-let collection;
-app.listen(3000, async() =>{
-    console.log("Server started");
-    const mongoClient = await mongodbConnection();
-    collection = mongoClient.db('board').collection("post");
-    console.log("MongoDB connected");
-});
+// let collection;
+// app.listen(3000, async() =>{
+//     console.log("Server started");
+//     const mongoClient = await mongodbConnection();
+//     collection = mongoClient.db('board').collection("post");
+//     console.log("MongoDB connected");
+// });
+
+module.exports = app;
