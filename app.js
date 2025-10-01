@@ -148,7 +148,7 @@ app.post("/write-comment",async(req,res)=>{
     return res.redirect(`/detail/${id}`);
 });
 
-//댓글 삭제
+//댓글 삭제   김하림 하트
 app.delete("/delete-comment",async(req,res)=>{
     const { id,idx,password}=req.body;
 
